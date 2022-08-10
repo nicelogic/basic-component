@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-k8s
+  namespace: kubernetes-dashboard
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`192.168.1.201`) && (PathPrefix(`/k8sdash`))
+      kind: Rule
+      services:
+      - name: kubernetes-dashboard
+        kind: Service
+        namespace: kubernetes-dashboard
+        port: 80

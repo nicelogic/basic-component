@@ -1,0 +1,4 @@
+resources:
+  - dashboard.yaml
+  - dashboard-adminuser.yaml
+  - ingress-route-k8s-dashboard.yml
