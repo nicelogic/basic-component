@@ -7,9 +7,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.frontend.rule.type: PathPrefixStrip
     traefik.ingress.kubernetes.io/frontend-entry-points: http,https
-    # traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    # cert-manager.io/cluster-issuer: letsencrypt-staging
     # traefik.ingress.kubernetes.io/router.tls.certresolver: cloudflare
-    # cert-manager.io/cluster-issuer: letsencrypt-production
 
 spec:
   # tls:
@@ -20,14 +21,14 @@ spec:
   - host: env0.luojm.com
     http:
       paths:
-      - path: /k8sdash
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: kubernetes-dashboard
             port:
-              number: 8080
-  # tls: # < placing a host in the TLS config will determine what ends up in the cert's subjectAltNames
-  # - hosts:
-  #   - env0.luojm.com
-  #   secretName: ingress-cert-env0 # < cert-manager will store the created certificate in this secret.
+              number: 80
+  tls: # < placing a host in the TLS config will determine what ends up in the cert's subjectAltNames
+  - hosts:
+    - env0.luojm.com
+    secretName: ingress-cert-env0 # < cert-manager will store the created certificate in this secret.

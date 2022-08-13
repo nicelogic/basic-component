@@ -2,3 +2,4 @@
 resources:
   - secret-cloudflare-api-key.yaml
   - issuer-cloudflare.yaml
+  - issuer-cloudflare-staging.yaml
