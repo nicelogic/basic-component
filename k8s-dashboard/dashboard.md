@@ -3,7 +3,11 @@
 
 ## cmd
 
+1.24.0之后，需要自己手动创建sc的token
+kubectl create token admin-user --duration=999999h
+
 kubectl delete middleware stripprefix-k8s -n default
+
 
 ## token 
 
