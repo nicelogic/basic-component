@@ -1,7 +1,12 @@
 resources:
-  - secret-ingress.yaml
+  # - self-signed-certificate.yaml
+  # - secret-ingress.yaml
+  # - ingress-k8s-dashboard.yaml
+  # - traefik-middleware-redirect-schema.yaml
   - secret-cloudflare-api-key.yaml
   - issuer.yaml
+  - certificate-env0.yaml
   - dashboard.yaml
   - dashboard-adminuser.yaml
-  - ingress-k8s-dashboard.yaml
+  - traefik-middleware-stripprefix.yaml
+  - ingress-route-k8s-dashboard.yaml

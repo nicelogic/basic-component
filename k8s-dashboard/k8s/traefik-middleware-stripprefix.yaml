@@ -1,0 +1,24 @@
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: stripprefix-k8s
+  namespace: kubernetes-dashboard
+spec:
+  stripPrefix:
+    prefixes:
+      - /k8s
+    forceSlash: false
+
+---
+
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: add-slash
+#   namespace: kubernetes-dashboard
+# spec:
+#   addPrefix:
+#     prefix: /
+
+

@@ -48,3 +48,17 @@
 #     # This is optional since cert-manager will default to this value however
 #     # if you are using an external issuer, change this to that issuer group.
 #     group: cert-manager.io
+
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-env0
+  namespace: kubernetes-dashboard
+spec:
+  dnsNames:
+    - env0.luojm.com
+  secretName: ingress-cert-env0
+  issuerRef:
+    name: letsencrypt-production
+    kind: Issuer
