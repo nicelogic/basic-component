@@ -5,7 +5,6 @@ metadata:
   namespace: kubernetes-dashboard
 spec:
   entryPoints:
-    - web
     - websecure
   tls: 
     secretName: ingress-cert-env0
