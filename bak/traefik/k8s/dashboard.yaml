@@ -1,0 +1,46 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+  namespace: traefik
+spec:
+  routes:
+    - match: Host(`traefik.luojm.com`) && (PathPrefix(`/api`))
+      kind: Rule
+      services:
+      - name: api@internal
+        kind: TraefikService
+      middlewares:
+      - name: auth
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth
+  namespace: traefik
+spec:
+  basicAuth:
+    secret: auth-secret # Kubernetes secret named "secretName"
+
+---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: authSecret
+#   namespace: traefik
+# data:
+#   users: |1
+#     "luojm:$$2y$$05$$LIzx6QNYVpmtbrjZWH.Kbeb3Vozy3ULLi54aYaNonxe1xhfB2Wp0S"
+
+# htpasswd -bc auth luojm ccccc123
+# kubectl create secret generic auth-secret --from-file=auth
+
+kind: Secret
+apiVersion: v1
+metadata:
+  name: auth-secret
+  namespace: traefik
+type: Opaque
+data:
+  auth: bHVvam06JGFwcjEkV2I2TTRXM2EkVzdDMmRMVS5NLnloeDdPTG4veVA0Lwo=

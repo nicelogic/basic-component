@@ -1,0 +1,21 @@
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-api-credentials
+  namespace: traefik
+type: Opaque
+stringData:
+  email: 358844436@qq.com
+  apiKey: 0c53b0c0333917dc44da74dfc7d4dad749d14
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-config
+  namespace: traefik
+data:
+  traefik-config.yaml: |
+    http:
+      middlewares:
