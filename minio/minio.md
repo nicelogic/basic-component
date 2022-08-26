@@ -36,7 +36,7 @@ Password: 12a52881-750a-415a-a212-ea0213fa3176
 
 ## k8s 
 
-kubectl minio init --namespace base --cluster-domain luojm.com
+kubectl minio init --namespace base --cluster-domain env0.minio.luojm.com
 kubectl minio proxy -n base 
 
 kubectl minio tenant delete  base --namespace base

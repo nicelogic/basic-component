@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd ./plugin
-wget https://gitee.com/wzhccccc123/file/blob/master/kubectl-minio -O kubectl-minio
+cd script
+./install-kubectl-minio-to-host.sh
+./init-minio-k8s-operator.sh
 cd ..
-scp ./plugin/
-ssh root@192.168.1.101 'bash -s' < remote-deploy.sh
+

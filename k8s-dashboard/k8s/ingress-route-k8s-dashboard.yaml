@@ -7,15 +7,15 @@ spec:
   entryPoints:
     - websecure
   tls: 
-    secretName: ingress-cert-env0
+    secretName: ingress-cert-env0-k8s
   routes:
     # - match: Host(`env0.luojm.com`) && Path(`/k8s`)
-    - match: Host(`env0.luojm.com`) && PathPrefix(`/k8s`)
-    # - match: Host(`env0.luojm.com`) 
+    # - match: Host(`env0.luojm.com`) && PathPrefix(`/k8s`)
+    - match: Host(`env0.k8s.luojm.com`) 
       kind: Rule
-      middlewares:
-      - name: stripprefix-k8s
-        namespace: kubernetes-dashboard
+      # middlewares:
+      # - name: stripprefix-k8s
+      #   namespace: kubernetes-dashboard
       # - name: https-only
       #   namespace: kubernetes-dashboard
       # - name: add-slash
