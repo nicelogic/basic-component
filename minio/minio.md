@@ -3,6 +3,9 @@
 
 ## cmd
 
+kubectl config set-context --current --namespace minio-operator
+kubectl config set-context --current --namespace tenant-0
+
 kubectl get pod kube-controller-manager-node3-control-plane -n kube-system -o yaml
 
 ## init
@@ -17,14 +20,13 @@ mv kubectl-minio /usr/local/bin/
 
 kubectl minio version
 
-kubectl create namespace minio-tenant-1
-
-kubectl minio tenant create minio-tenant-1       \
-  --servers                 1                    \
+kubectl create namespace tenant-0
+kubectl minio tenant create tenant-0       \
+  --servers                 2                    \
   --volumes                 4                   \
-  --capacity                5Gi                 \
-  --storage-class           minio-local-storage \
-   --namespace  minio-tenant-1
+  --capacity                30Gi                 \
+  --storage-class           local-hostpath \
+   --namespace  tenant-0
 
   kubectl get svc --namespace minio-tenant-1
 
@@ -36,7 +38,11 @@ Password: 12a52881-750a-415a-a212-ea0213fa3176
 
 ## k8s 
 
-kubectl minio init --namespace base --cluster-domain env0.minio.luojm.com
+// kubectl minio init --namespace base --cluster-domain env0.minio.luojm.com
+此处切记： 设置cluster domain之后, tenant部署之后，会用这个作为url一部分去访问
+私有云的情况下，路由器端口映射等原因，可能经常访问不了
+看Pod的日志可以得出这里会阻塞住，一直crash
+
 kubectl minio proxy -n base 
 
 kubectl minio tenant delete  base --namespace base

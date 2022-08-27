@@ -2,6 +2,13 @@
 
 ## FAQ
 
+### 什么时候用二级域名，什么时候用slash
+
+平台级组件用二级域名，因为他们的CONSOLE往往用slash还需要ridirect url跳过slash部分
+minio.env0.luojm.com
+k8s.env0.luojm.com
+warmth.env0.luojm.com
+
 ### traefik dash, k8s dash是否需要支持https
 
 * 反正其他服务也要支持，增加支持了就好
@@ -40,3 +47,8 @@
 设备都共享的，k8s也共享的，数据库独立共享。
 
 最终决策： 隔离占资源。费能力维护。而稳定性好处在目前阶段看不到。共享之。
+
+### 为什么minio operator不设置部署到哪个节点
+
+operator默认策略 部署2个够用了（一个Leader， 一个slave）。主要的性能还是在于io吧。具体的tenant用的磁盘，机器网络IO
+operator并不需要指定哪个机器，和性能关系不大（自我认为）

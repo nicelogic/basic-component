@@ -4,4 +4,9 @@ resources:
   # - pv.yaml
   # - ingress-minio-operator.yaml
   # - ingress-minio-tenant-base.yaml
+  - secret-cloudflare-api-key.yaml
+  - issuer.yaml
+  - certificate-env0-minio-operator.yaml
+  - ingress-route-minio-operator.yaml
+  - secret-minio-operator-console-bug-fix-for-k8s-1.24.0.yaml
 

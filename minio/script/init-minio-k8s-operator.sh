@@ -1,3 +1,6 @@
 #!/bin/bash
 
-kubectl minio --kubeconfig ../devops/env-0/token/admin.conf init --cluster-domain env0.minio.luojm.com
+targetHost="192.168.1.201"
+ssh root@$targetHost "kubectl minio init"
+# kubectl minio  init --cluster-domain minio.env0.luojm.com --kubeconfig ../devops/env-0/token/admin.conf 
+
