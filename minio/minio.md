@@ -8,6 +8,9 @@ kubectl config set-context --current --namespace tenant-0
 
 kubectl get pod kube-controller-manager-node3-control-plane -n kube-system -o yaml
 
+export MINIO_SERVER_URL="https://tenant0.minio.env0.luojm.com:9443"
+
+
 ## init
 
 <!-- wget <https://github.com/minio/operator/releases/download/v4.2.7/kubectl-minio_4.2.7_linux_amd64> -O kubectl-minio
@@ -55,7 +58,7 @@ kubectl minio init  --cluster-domain 10.1.0.1
 kubectl minio proxy  
 
 kubectl create ns minio-tenant-base
-kubectl minio tenant create  minio-base-tenant-1 --servers 2 --volumes 4 --capacity 10Gi --storage-class minio-local-storage  --namespace minio-tenant-base
+kubectl minio tenant create  tenant-0 --servers 2 --volumes 4 --capacity 200Gi --storage-class local-hostpath  --namespace tenant-0
 
 kubectl minio delete -n minio-tenant-base
 kubectl minio tenant delete  minio-base-tenant-1 -n minio-tenant-base

@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minio-operator-console-4222
+  namespace: minio-operator
+spec:
+  entryPoints:
+    - minio
+  tls: 
+    secretName: ingress-cert-env0-minio-4222
+  routes:
+    # - match: Host(`env0.luojm.com`) && Path(`/k8s`)
+    # - match: Host(`env0.luojm.com`) && PathPrefix(`/k8s`)
+    - match: Host(`operator.minio-operator.svc.minio.env0.luojm.com`) 
+      kind: Rule
+      # middlewares:
+      # - name: stripprefix-k8s
+      #   namespace: kubernetes-dashboard
+      # - name: https-only
+      #   namespace: kubernetes-dashboard
+      # - name: add-slash
+      #   namespace: kubernetes-dashboard
+      services:
+      - name: operator
+        kind: Service
+        namespace: minio-operator
+        port: 4222
+

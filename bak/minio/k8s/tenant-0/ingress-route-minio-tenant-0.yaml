@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minio-tenant-0
+  namespace: tenant-0
+spec:
+  entryPoints:
+    - web
+    - websecure
+  tls: 
+    secretName: ingress-cert-env0-minio-tenant-0
+  routes:
+    # - match: Host(`env0.luojm.com`) && Path(`/k8s`)
+    # - match: Host(`env0.luojm.com`) && PathPrefix(`/k8s`)
+    - match: Host(`tenant0.minio.env0.luojm.com`) 
+      kind: Rule
+      # middlewares:
+      # - name: stripprefix-k8s
+      #   namespace: kubernetes-dashboard
+      # - name: https-only
+      #   namespace: kubernetes-dashboard
+      # - name: add-slash
+      #   namespace: kubernetes-dashboard
+      services:
+      - name: minio
+        kind: Service
+        namespace: tenant-0
+        port: 80
