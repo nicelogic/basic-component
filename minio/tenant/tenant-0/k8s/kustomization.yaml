@@ -3,6 +3,7 @@ resources:
   - secret-cloudflare-api-key-tenant-0.yaml
   - issuer-tenant-0.yaml
   - certificate-env0-minio-tenant-0.yaml
-  - ingress-route-minio-tenant-0.yaml
+  - ingress-route-console-tenant-0.yaml
+  - ingress-route-tenant-0.yaml
   - pv-log.yaml
   - pv-prometheus.yaml

@@ -1,12 +1,11 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: minio-tenant-0
+  name: tenant-0
   namespace: tenant-0
 spec:
   entryPoints:
-    - web
-    - websecure
+    - traefik
   tls: 
     secretName: ingress-cert-env0-minio-tenant-0
   routes:
@@ -23,7 +22,7 @@ spec:
       #   namespace: kubernetes-dashboard
       services:
       # - name: minio
-      - name: tenant-0-console
+      - name: tenant-0-hl
         kind: Service
         namespace: tenant-0
-        port: 9090
+        port: 9000
