@@ -19,4 +19,5 @@ spec:
           email: 358844436@qq.com
           apiKeySecretRef:
             name: cloudflare-api-key-secret
+            namespace: 
             key: api-key

@@ -1,3 +1,19 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-dash
+  namespace: traefik
+spec:
+  dnsNames:
+    - traefik.env0.luojm.com
+  secretName: ingress-route-certicate-dash
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:

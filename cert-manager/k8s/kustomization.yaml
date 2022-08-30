@@ -1,4 +1,4 @@
 
 resources:
-  # - secret-cloudflare-api-key.yaml
+  - secret-cloudflare-api-key.yaml
   - cluster-issuer.yaml
