@@ -2,8 +2,7 @@
 
 # ssh root@$targetHost 'bash -s' < remote-deploy.sh
 
-targetHost="192.168.1.100"
-# targetHost="192.168.1.201"
+targetHost="192.168.1.201"
 ssh root@$targetHost "mkdir -p /root/minio"
 
 cd ../plugin

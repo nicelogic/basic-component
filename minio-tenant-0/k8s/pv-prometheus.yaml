@@ -14,7 +14,7 @@ spec:
   #  storage-class: minio-local-storage 
    # storageClassName: minio-local-storage 
    local:
-      path: /opt/data/minio/prometheus
+      path: /opt/data/minio
    nodeAffinity:
       required:
          nodeSelectorTerms:

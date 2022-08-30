@@ -1,4 +1,7 @@
 #!/bin/bash
 
-kubectl --kubeconfig ../devops/env-0/token/admin.conf delete -k ./k8s
-kubectl --kubeconfig ../devops/env-0/token/admin.conf delete namespace minio-operator
+kubeConfigFilePath=$(cat ../0-env/which-env-to-apply)
+echo "current env: $kubeConfigFilePath"
+
+kubectl --kubeconfig $kubeConfigFilePath delete -k ./k8s
+kubectl --kubeconfig $kubeConfigFilePath delete namespace minio-operator

@@ -1,0 +1,6 @@
+
+resources:
+  - pv-log.yaml
+  - pv-prometheus.yaml
+  - ingress-route-tenant-0-console.yaml
+  - ingress-route-tenant-0.yaml
