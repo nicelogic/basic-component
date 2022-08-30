@@ -1,0 +1,5 @@
+
+resources:
+  - secret-cloudflare-api-key.yaml
+  - certificate-dash.yaml
+  - ingress-route-dash.yaml

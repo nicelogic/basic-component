@@ -61,4 +61,4 @@ spec:
   secretName: ingress-cert-env0-k8s
   issuerRef:
     name: letsencrypt-production
-    kind: Issuer
+    kind: ClusterIssuer

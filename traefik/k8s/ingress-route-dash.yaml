@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: secure-traefik-dash
+  namespace: traefik
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: ingress-route-certicate-dash
+  routes:
+    - match: Host(`traefik.env0.luojm.com`)  
+      kind: Rule
+      services:
+        - kind: TraefikService
+          name: api@internal
