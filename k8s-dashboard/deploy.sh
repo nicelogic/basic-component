@@ -1,4 +1,6 @@
 #!/bin/bash
 
-kubectl --kubeconfig ../devops/env-0/token/admin.conf apply -k ./k8s
-# kubectl --kubeconfig ../devops/te-0/token/admin.conf apply -k ./k8s
+kubeConfigFilePath=$(cat ../0-env/which-env-to-apply)
+echo "current env: $kubeConfigFilePath"
+
+kubectl --kubeconfig $kubeConfigFilePath apply -k ./k8s
