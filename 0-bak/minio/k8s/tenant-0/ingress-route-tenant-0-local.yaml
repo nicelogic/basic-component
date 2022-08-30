@@ -1,18 +1,15 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: tenant-0
+  name: tenant-0-local
   namespace: tenant-0
 spec:
   entryPoints:
     - web
-    - websecure
-  tls: 
-    secretName: ingress-cert-env0-minio-tenant-0
   routes:
     # - match: Host(`env0.luojm.com`) && Path(`/k8s`)
     # - match: Host(`env0.luojm.com`) && PathPrefix(`/k8s`)
-    - match: Host(`tenant0.minio.env0.luojm.com`) 
+    - match: Host(`192.168.1.201`) 
       kind: Rule
       # middlewares:
       # - name: stripprefix-k8s

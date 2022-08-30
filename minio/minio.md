@@ -90,3 +90,21 @@ Tenant 'minio-base-tenant-1' created in 'minio-tenant-base' Namespace
 
 mc alias set tenant-base https://minio-tenant-base.luojm.com admin  932740e2-5972-483f-9ed6-344ef05528e4
 mc ls tenant-base/test
+
+
+## faq
+
+### 如果生成的url偶尔是本地的偶尔是外网的
+
+可能是pod只重启了一个， 在环境变量变更之后
+rollout sts只会重启一个
+
+
+### tenant console原理及内网部署须知
+
+
+## mc
+
+ mc alias set env0 https://tenant0.minio.env0.luojm.com:9443 V8xoBJAn8IYpOerT egVTkHkcCGzCaP3MwkaPBU4SQA88T3qe
+ mc ls env0/bucket-0
+ mc share download env0/bucket-0/379_1661761509.mp4

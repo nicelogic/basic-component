@@ -7,11 +7,11 @@ spec:
   entryPoints:
     - websecure
   tls: 
-    secretName: ingress-cert-env0-minio-tenant-0
+    secretName: ingress-cert-env0-minio-tenant-0-console
   routes:
     # - match: Host(`env0.luojm.com`) && Path(`/k8s`)
     # - match: Host(`env0.luojm.com`) && PathPrefix(`/k8s`)
-    - match: Host(`tenant0.minio.env0.luojm.com`) 
+    - match: Host(`console.tenant0.minio.env0.luojm.com`) 
       kind: Rule
       # middlewares:
       # - name: stripprefix-k8s

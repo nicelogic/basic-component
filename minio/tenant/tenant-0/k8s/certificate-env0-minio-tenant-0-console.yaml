@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-env0-minio-tenant-0-console
+  namespace: tenant-0
+spec:
+  dnsNames:
+    - console.tenant0.minio.env0.luojm.com
+  secretName: ingress-cert-env0-minio-tenant-0-console
+  issuerRef:
+    name: letsencrypt-production
+    kind: Issuer
