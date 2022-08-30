@@ -1,3 +1,19 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-env0-k8s
+  namespace: kubernetes-dashboard
+spec:
+  dnsNames:
+    - k8s.env0.luojm.com
+  secretName: ingress-cert-env0-k8s
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:

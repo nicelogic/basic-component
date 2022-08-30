@@ -13,7 +13,4 @@ kubectl describe Challenge -n traefik
 
 ## 关于cloudflare secret放在哪里可以生成证书的问题
 
-https://github.com/cert-manager/cert-manager/issues/263
-
-* 实验仅在cert-manager即可
-* 实验仅在kube-system即可
+* 实验证明仅在cert-manager即可

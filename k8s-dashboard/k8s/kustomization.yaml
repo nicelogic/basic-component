@@ -1,6 +1,4 @@
 resources:
-  - secret-cloudflare-api-key.yaml
-  - certificate-env0-k8s.yaml
   - dashboard.yaml
   - dashboard-adminuser.yaml
   - ingress-route-k8s-dashboard.yaml
