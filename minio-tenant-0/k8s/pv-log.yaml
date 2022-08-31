@@ -14,7 +14,7 @@ spec:
   #  storage-class: minio-local-storage 
    # storageClassName: minio-local-storage 
    local:
-      path: /opt/data/minio
+      path: /opt/data/minio/log
    nodeAffinity:
       required:
          nodeSelectorTerms:
