@@ -20,7 +20,7 @@ metadata:
   namespace: tenant-0
 spec:
   entryPoints:
-    # - web
+    - web
     - websecure
   tls: 
     secretName: ingress-cert-env0-minio-tenant-0-console

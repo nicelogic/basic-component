@@ -108,3 +108,9 @@ rollout sts只会重启一个
  mc alias set env0 https://tenant0.minio.env0.luojm.com:9443 V8xoBJAn8IYpOerT egVTkHkcCGzCaP3MwkaPBU4SQA88T3qe
  mc ls env0/bucket-0
  mc share download env0/bucket-0/379_1661761509.mp4
+
+
+ ## 悬疑点
+
+ 一定要开放9080->80，且tenant console web端口打开, console才工作正常
+ 要不然会出现登录不上/console share不了的问题
