@@ -1,19 +1,7 @@
 
 # minio
 
-## cmd
 
-kubectl config set-context --current --namespace minio-operator
-kubectl config set-context --current --namespace tenant-0
-
-用于检测minio是否可以自签证书
-kubectl get pod kube-controller-manager-node3-control-plane -n kube-system -o yaml
-
-用于修改tenant0 secret: tenant-0-env-configuration, 这样生成的sharing的url就是公网地址的
-否则默认是: cluster.local
-export MINIO_SERVER_URL="https://tenant0.minio.env0.luojm.com:9443"
-
-kubectl minio tenant  info tenant-0 -n tenant-0
 
 ## minio原理
 
@@ -48,6 +36,12 @@ tenant当前统一用minio operator console
 
 ## faq
 
+## sharing url内网怎么办
+
+export MINIO_SERVER_URL="https://tenant0.minio.env0.luojm.com:9443"
+修改tenant0 secret: tenant-0-env-configuration, 这样生成的sharing的url就是公网地址的
+否则默认是: cluster.local
+
 ### 为何minio init不设置cluster-domain
 
 // kubectl minio init --namespace base --cluster-domain env0.minio.luojm.com
@@ -66,15 +60,3 @@ rollout sts只会重启一个
  一定要开放9080->80，且tenant console web端口打开, console才工作正常
  要不然会出现登录不上/console share不了的问题
 
-## mc
-
- mc alias set env0 https://tenant0.minio.env0.luojm.com:9443 V8xoBJAn8IYpOerT egVTkHkcCGzCaP3MwkaPBU4SQA88T3qe
- mc ls env0/bucket-0
- mc share download env0/bucket-0/379_1661761509.mp4
-
- mc alias set env0-r https://tenant0.minio.env0.luojm.com:9443 readonly ccccc123
- mc share download env0-r/bucket-0/379_1661761509.mp4
-
-
-mc alias set env0-zhihua https://tenant0.minio.env0.luojm.com:9443 zhihua ccccc123
-mc rm --recursive --force env0-zhihua/fuan-up/zhihua/test
