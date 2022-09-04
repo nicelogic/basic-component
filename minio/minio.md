@@ -36,6 +36,10 @@ tenant当前统一用minio operator console
 
 ## faq
 
+## 登录失败401,invalid login
+
+两台机器，挂了一台。或者Pod起不来超过n/2个
+
 ## sharing url内网怎么办
 
 export MINIO_SERVER_URL="https://tenant0.minio.env0.luojm.com:9443"
