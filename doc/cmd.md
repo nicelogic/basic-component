@@ -1,14 +1,15 @@
 
 # cmd
 
-
-## minio 
+## namespace context
 
 kubectl config set-context --current --namespace minio-operator
 kubectl config set-context --current --namespace tenant-0
+kubectl config set-context --current --namespace k8ssandra-operator
+
+## minio 
 
 kubectl minio tenant  info tenant-0 -n tenant-0
-
 用于检测minio是否可以自签证书
 kubectl get pod kube-controller-manager-node3-control-plane -n kube-system -o yaml
 

@@ -3,6 +3,7 @@ apiVersion: k8ssandra.io/v1alpha1
 kind: K8ssandraCluster
 metadata:
   name: cassandra-cluster-env0
+  namespace: k8ssandra-operator
 spec:
   cassandra:
     serverVersion: "4.0.1"
