@@ -1,4 +1,5 @@
 
 resources:
   - cassandra.yaml
+  - ingress-route-auth.yaml
   - ingress-route-graphql.yaml

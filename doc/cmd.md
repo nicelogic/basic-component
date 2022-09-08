@@ -61,3 +61,8 @@ kubectl exec -it cassandra-cluster-env0-dc1-default-sts-0 -n k8ssandra-operator 
 kubectl exec -it cassandra-cluster-env0-dc1-default-sts-0 -n k8ssandra-operator -- /bin/bash
 ping cassandra-cluster-env0-dc3-stargate-service
 cqlsh -u cassandra-cluster-env0-superuser -p znk4uVfaCLm6hppEZaJl cassandra-cluster-env0-dc1-stargate-service
+
+## stargate
+
+curl -L -X POST 'https://auth.cassandra.env0.luojm.com:9443/v1/auth' -H 'Content-Type: application/json' --data-raw '{"username": "cassandra-cluster-env0-superuser", "password": "znk4uVfaCLm6hppEZaJl"}'
+{"authToken":"07357065-c713-4480-8b99-8eb0d8a7b5c4"}
