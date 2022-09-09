@@ -1,0 +1,34 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-env0-cassandra-cql
+  namespace: k8ssandra-operator
+spec:
+  dnsNames:
+    - cql.cassandra.env0.luojm.com
+  secretName: tls-cql.cassandra.env0.luojm.com
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: cassandra-cql
+  namespace: k8ssandra-operator
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-cql.cassandra.env0.luojm.com
+  routes:
+    - match: Host(`cql.cassandra.env0.luojm.com`) 
+      kind: Rule
+      services:
+      - name: cassandra-cluster-env0-dc1-stargate-service 
+        kind: Service
+        namespace: k8ssandra-operator
+        port: 9042
