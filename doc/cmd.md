@@ -5,7 +5,9 @@
 
 kubectl config set-context --current --namespace minio-operator
 kubectl config set-context --current --namespace tenant-0
-kubectl config set-context --current --namespace k8ssandra-operator
+kubectl config set-context --current --namespace k8ssandra-operato	r
+
+
 
 ## minio 
 
@@ -33,6 +35,7 @@ mc cp ./1.mp4 env0-zhihua/fuan-up/zhihua/1.mp4
 
 kubectl config set-context --current --namespace k8ssandra-operator
 kubectl describe k8cs cassandra-cluster-env0 -n k8ssandra-operator
+kubectl describe cassandradatacenter dc1
 
 //测试部署之后状态, status: UN (代表up normal)->正常状态
 CASS_USERNAME=$(kubectl get secret cassandra-cluster-env0-superuser -n k8ssandra-operator -o=jsonpath='{.data.username}' | base64 --decode)
@@ -65,4 +68,3 @@ cqlsh -u cassandra-cluster-env0-superuser -p znk4uVfaCLm6hppEZaJl cassandra-clus
 ## stargate
 
 curl -L -X POST 'https://auth.cassandra.env0.luojm.com:9443/v1/auth' -H 'Content-Type: application/json' --data-raw '{"username": "cassandra-cluster-env0-superuser", "password": "znk4uVfaCLm6hppEZaJl"}'
-{"authToken":"07357065-c713-4480-8b99-8eb0d8a7b5c4"}
