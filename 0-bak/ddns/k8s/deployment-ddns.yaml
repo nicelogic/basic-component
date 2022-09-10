@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ddns
+  namespace: ddns
+spec:
+  selector:
+    matchLabels:
+      app: ddns
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ddns
+    spec:
+      containers:
+      - name: ddns-go
+        image: jeessy/ddns-go
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "50m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 80
+        - containerPort: 9876
+

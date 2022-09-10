@@ -1,0 +1,35 @@
+
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: tls-env0-ddns
+#   namespace: ddns
+# spec:
+#   dnsNames:
+#     - ddns.env0.luojm.com
+#   secretName: tls-env0-ddns
+#   issuerRef:
+#     name: letsencrypt-production
+#     kind: ClusterIssuer
+
+# ---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ddns
+  namespace: ddns
+spec:
+  entryPoints:
+    # - websecure
+    - web
+  # tls: 
+  #   secretName: tls-env0-ddns
+  routes:
+    - match: Host(`192.168.1.201`) 
+      kind: Rule
+      services:
+      - name: ddns
+        kind: Service
+        port: 80
+

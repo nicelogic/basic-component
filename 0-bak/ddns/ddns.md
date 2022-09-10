@@ -3,6 +3,7 @@
 
 ## duty
 
+控制台： 192.168.1.201
 每个环境都有一个对外出口的虚IP
 理论上，所有外部流量只能访问该IP
 
@@ -29,4 +30,18 @@ console.tenant0.minio.env0.luojm.com
 
 ### app level
 
+warmth.luojm.com
+
+
+## bak
+
+env0.luojm.com
+traefik.env0.luojm.com
+k8s.env0.luojm.com
+minio.env0.luojm.com
+tenant0.minio.env0.luojm.com
+console.tenant0.minio.env0.luojm.com
+auth.cassandra.env0.luojm.com
+graphql.cassandra.env0.luojm.com
+cql.cassandra.env0.luojm.com
 warmth.luojm.com

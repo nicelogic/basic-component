@@ -1,0 +1,6 @@
+
+resources:
+  - namespace.yaml
+  - deployment-ddns.yaml
+  - service-ddns.yaml
+  - ingress-route-ddns.yaml
