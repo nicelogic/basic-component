@@ -3,7 +3,6 @@
 
 ## TODO
 
-* ddns在需要的环境创建在k8s中,并且提供ingress
 * 思考如何切换环境
 * 新机器加入k8s须安装/调整的的basic-component
 * 规划五台机器minio, cassandra容量分配
