@@ -7,6 +7,8 @@
 kubectl config set-context --current --namespace k8ssandra-operator
 kubectl describe k8cs cassandra-cluster-env0 -n k8ssandra-operator
 kubectl describe cassandradatacenter dc1
+kubectl rollout restart -n k8ssandra-operator deployment k8ssandra-operator
+
 
 //测试部署之后状态, status: UN (代表up normal)->正常状态
 CASS_USERNAME=$(kubectl get secret cassandra-cluster-env0-superuser -n k8ssandra-operator -o=jsonpath='{.data.username}' | base64 --decode)

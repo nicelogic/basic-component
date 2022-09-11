@@ -10,7 +10,7 @@ spec:
     datacenters:
       - metadata:
           name: dc1
-        size: 3
+        size: 2
         storageConfig:
           cassandraDataVolumeClaimSpec:
             storageClassName: local-hostpath
