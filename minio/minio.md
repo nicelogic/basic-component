@@ -80,8 +80,7 @@ export MINIO_SERVER_URL="https://tenant0.minio.env0.luojm.com:9443"
 可能是pod只重启了一个， 在环境变量变更之后
 rollout sts只会重启一个
 
-## 悬疑点
 
- 一定要开放9080->80，且tenant console web端口打开, console才工作正常
- 要不然会出现登录不上/console share不了的问题
+## 实验
 
+如果是2node, 4 driver的情况， 一个node挂掉，还是可以读取下载资源，但是上传不了

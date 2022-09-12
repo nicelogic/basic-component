@@ -25,7 +25,11 @@ kubectl label node node-3 ingresscontroller-
 kubectl label node node-4 ingresscontroller=traefik --overwrite
 
 ### 强制删除pod
-kubectl delete pod traefik-697b8d8dd-xtn7z  --grace-period=0 --force --namespace traefik
+kubectl delete pod tenant-0-pool-0-1  --grace-period=0 --force --namespace tenant-0
+
+## 暂停deployment
+
+kubectl rollout pause deployment/cassandra-cluster-env0-dc1-default-stargate-deployment
 
 ### 给node去除污点
 

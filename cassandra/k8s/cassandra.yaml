@@ -23,6 +23,7 @@ spec:
           jvmOptions:
             heapSize: 512M
         stargate:
+          allowStargateOnDataNodes: true
           size: 1
           heapSize: 256M
 

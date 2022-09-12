@@ -647,3 +647,7 @@ E0505 15:17:53.327884       1 run.go:74] "command failed" err="context deadline 
 ```
 
 docker rm -f $(docker ps -qa)
+
+## crd
+
+crd object里， 可以查看crd支持的配置
