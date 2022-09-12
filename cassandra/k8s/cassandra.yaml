@@ -24,6 +24,6 @@ spec:
             heapSize: 512M
         stargate:
           allowStargateOnDataNodes: true
-          size: 1
+          size: 2
           heapSize: 256M
 
