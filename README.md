@@ -2,8 +2,8 @@
 
 ## 决策
 
-* env负责硬件，系统，k8s集群创建部分。其他基础组件basic-component负责
-* env-name.luojm.com指向对外服务虚Ip(可能是master虚ip,也可能是ingress虚Ip)
+* env负责硬件，系统，k8s集群创建部分。其他基础组件basic-component负责,包括containerd, k8s的运维部分
+* env0.luojm.com指向对外服务虚Ip(可能是master虚ip,也可能是ingress虚Ip)
 
 ## 诡异现象
 
@@ -81,5 +81,5 @@ warmth.env0.luojm.com
 
 ### 为什么minio operator不设置部署到哪个节点
 
-operator默认策略 部署2个够用了（一个Leader， 一个slave）。主要的性能还是在于io吧。具体的tenant用的磁盘，机器网络IO
-operator并不需要指定哪个机器，和性能关系不大（自我认为）
+operator默认策略 部署2个够用了（一个Leader， 一个slave）。主要的性能还是在于tenant
+tenant用的worker node设置亲和性才是需要的

@@ -651,3 +651,22 @@ docker rm -f $(docker ps -qa)
 ## crd
 
 crd object里， 可以查看crd支持的配置
+
+## log
+
+当使用某 CRI 容器运行时 时，kubelet 要负责对日志进行轮换，并管理日志目录的结构。 kubelet 将此信息发送给 CRI 容器运行时，后者将容器日志写入到指定的位置。 在 kubelet 配置文件 中的两个 kubelet 参数 containerLogMaxSize 和 containerLogMaxFiles 可以用来配置每个日志文件的最大长度和每个容器可以生成的日志文件个数上限。
+
+https://kubernetes.io/zh-cn/docs/reference/config-api/kubelet-config.v1beta1/
+
+containerLogMaxSize是定义容器日志文件被轮转之前可以到达的最大尺寸。 例如："5Mi" 或 "256Ki"。
+默认值："10Mi"
+
+containerLogMaxFiles
+int32	
+containerLogMaxFiles设置每个容器可以存在的日志文件个数上限。
+默认值："5"
+
+说明： 如果有外部系统执行日志轮转或者使用了 CRI 容器运行时，那么 kubectl logs 仅可查询到最新的日志内容。 比如，对于一个 10MB 大小的文件，通过 logrotate 执行轮转后生成两个文件， 一个 10MB 大小，一个为空，kubectl logs 返回最新的日志文件，而该日志文件在这个例子中为空。
+
+基于上述存储，一个pod最多50M存储，则每个机器上还是需要一个系统启动盘用于存储基础pod日志
+其他盘专门用于数据存储

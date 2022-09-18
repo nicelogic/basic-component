@@ -3,11 +3,6 @@
 
 ## TODO
 
-* stargate可以和dc一起部署
-* 测试minio挂一台，其他数据mc命令还是可读
-* 规划五台机器minio, cassandra容量分配
-* node-1调整成control-panel
-
 * efk,顺带搞清楚containerd, pod日志存储情况
 * prometheus + grafana
 

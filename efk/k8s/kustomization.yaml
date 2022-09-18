@@ -1,0 +1,5 @@
+
+resources:
+  - namespace.yaml
+  - elasticsearch-svc.yaml
+  - elasticsearch-sts.yaml
