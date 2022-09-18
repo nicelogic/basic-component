@@ -7,7 +7,9 @@
 
 kubectl config set-context --current --namespace minio-operator
 kubectl config set-context --current --namespace tenant-0
-kubectl config set-context --current --namespace k8ssandra-operato	r
+kubectl config set-context --current --namespace k8ssandra-operator
+kubectl config set-context --current --namespace kube-loging
+
 
 
 ### 查看
@@ -44,6 +46,12 @@ kubectl taint nodes node-3 node-role.kubernetes.io/master=:NoSchedule
 kubectl taint nodes node-3 node-role.kubernetes.io/control-plane=:NoSchedule
 
 kubectl taint nodes node-3 node-role.kubernetes.io/master=:PreferNoSchedule
+
+### 强制删除pvc/pv
+
+kubectl patch pvc data0-tenant-0-pool-0-0 -p '{"metadata":{"finalizers":null}}'
+kubectl patch pv data0-tenant-0-pool-0-0 -p '{"metadata":{"finalizers":null}}'
+
 
 
 
