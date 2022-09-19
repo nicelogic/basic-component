@@ -5,3 +5,4 @@ resources:
   - elasticsearch-sts.yaml
   - kibana.yaml
   - ingress-route-kibana.yaml
+  - fluentd.yaml
