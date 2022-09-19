@@ -1,0 +1,34 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-env0-kibana
+  namespace: kube-logging
+spec:
+  dnsNames:
+    - kibana.env0.luojm.com
+  secretName: tls-env0-kibana
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kibana
+  namespace: kube-logging
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-env0-kibana
+  routes:
+    - match: Host(`kibana.env0.luojm.com`) 
+      kind: Rule
+      services:
+      - name: kibana
+        kind: Service
+        namespace: kube-logging
+        port: 5601

@@ -4,3 +4,4 @@ resources:
   - elasticsearch-svc.yaml
   - elasticsearch-sts.yaml
   - kibana.yaml
+  - ingress-route-kibana.yaml
