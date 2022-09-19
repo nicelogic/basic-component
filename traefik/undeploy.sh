@@ -5,3 +5,5 @@ echo "current env: $kubeConfigFilePath"
 
 kubectl --kubeconfig $kubeConfigFilePath delete -k ./k8s
 # kubectl --kubeconfig $kubeConfigFilePath delete namespace cert-manager
+
+helm --kubeconfig $kubeConfigFilePath uninstall traefik -n traefik

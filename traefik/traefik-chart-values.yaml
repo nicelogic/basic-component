@@ -1,4 +1,5 @@
 additionalArguments:
+  - --entrypoints.metrics.address=:9199/tcp
   # - --log.filepath=/opt/data/traefik/log/traefik.log
   # - --accesslog.filepath=/opt/data/traefik/log/access.log
   # - --log.level=DEBUG
@@ -7,7 +8,6 @@ additionalArguments:
   # - --api.insecure=true
   # - --serversTransport.insecureSkipVerify=true
 
-  # - --entryPoints.metrics.address=:9199/tcp
   # - --entryPoints.traefik.address=:8080/tcp
 
   # - --entrypoints.websecure.http.tls.certresolver=cloudflare
