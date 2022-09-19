@@ -1,0 +1,5 @@
+
+resources:
+  - namespace.yaml
+  - grafana.yaml
+  - ingress-route-grafana.yaml
