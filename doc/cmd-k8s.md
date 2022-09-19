@@ -8,7 +8,7 @@
 kubectl config set-context --current --namespace minio-operator
 kubectl config set-context --current --namespace tenant-0
 kubectl config set-context --current --namespace k8ssandra-operator
-kubectl config set-context --current --namespace kube-loging
+kubectl config set-context --current --namespace kube-logging
 
 
 

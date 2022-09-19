@@ -35,6 +35,8 @@ export MINIO_SERVER_URL="https://tenant0.minio.env0.luojm.com:9443"
 作为对外开放的url。没有默认就是cluster.local
 生成的share url/ mc alias连接的url都是这个地址
 
+oops: operator 里面需要把tls去掉
+
 minio operator console的密码在： secret: console-sa-secret(当前是自己创建的，k8s 1.24.0 service account的token要自己去创建)
 
 ### minio root user
