@@ -1,0 +1,6 @@
+resources:
+  - traefik-namespace.yaml
+  - traefik-config.yaml
+  - persistent-volume-claim.yaml
+  - dashboard.yaml
+

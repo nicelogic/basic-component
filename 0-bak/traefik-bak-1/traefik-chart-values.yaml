@@ -1,0 +1,52 @@
+additionalArguments:
+  # - --entryPoints.metrics.address=:9199/tcp
+  # - --entryPoints.traefik.address=:8080/tcp
+  - --entrypoints.mongodb.address=:27017/tcp
+  - --entrypoints.websecure.http.tls.certresolver=cloudflare
+  - --entrypoints.websecure.http.tls.domains[0].main=luojm.com
+  - --entrypoints.websecure.http.tls.domains[0].sans=*.luojm.com
+  - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
+  - --certificatesresolvers.cloudflare.acme.email=358844436@qq.com
+  # - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
+  - --certificatesresolvers.cloudflare.acme.storage=/data/acme.json
+  # - --api.dashboard=false
+  # - --api.insecure=true
+  # - --serversTransport.insecureSkipVerify=true
+env:
+  - name: CF_API_EMAIL
+    valueFrom:
+      secretKeyRef:
+        key: email
+        name: cloudflare-api-credentials
+  - name: CF_API_KEY
+    valueFrom:
+      secretKeyRef:
+        key: apiKey
+        name: cloudflare-api-credentials
+# ingressRoute:
+#   dashboard:
+#     enabled: true
+persistence:
+  enabled: true
+  existingClaim: cert-claim
+  accessMode: ReadWriteOnce
+deployment:
+  dnsPolicy: Default
+hostNetwork: true
+ports:
+  web:
+    port: 80
+    redirectTo: websecure
+  websecure:
+    port: 443
+securityContext:
+  capabilities:
+    drop: [ALL]
+    add: [NET_BIND_SERVICE]
+  readOnlyRootFilesystem: true
+  runAsGroup: 0
+  runAsNonRoot: false
+  runAsUser: 0
+
+
+
