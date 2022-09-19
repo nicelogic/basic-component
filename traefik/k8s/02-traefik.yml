@@ -20,14 +20,16 @@ spec:
       serviceAccountName: traefik-account
       nodeSelector:
         ingresscontroller: traefik
+      hostNetwork: true
       containers:
         - name: traefik
           image: traefik:v2.8
           args:
-            - --api.insecure
+            # - --api.insecure
+            - --accesslog
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
             - --providers.kubernetesingress
-            - --entryPoints.web.address=:80
-            - --entryPoints.websecure.address=:443
           ports:
             - name: web
               containerPort: 80
