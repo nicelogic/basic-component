@@ -1,0 +1,37 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-alertmanager
+  namespace: monitoring
+spec:
+  dnsNames:
+    - alertmanager.env0.luojm.com
+  secretName: tls-alertmanager
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-alertmanager
+  routes:
+    - match: Host(`alertmanager.env0.luojm.com`) 
+      kind: Rule
+      services:
+      - name: alertmanager-main
+        kind: Service
+        namespace: monitoring
+        port: 9093
+      middlewares:
+        - name: auth
+  

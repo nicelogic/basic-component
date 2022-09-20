@@ -1,0 +1,22 @@
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth
+  namespace: monitoring
+spec:
+  basicAuth:
+    secret: auth-secret # Kubernetes secret named "secretName"
+
+---
+
+kind: Secret
+apiVersion: v1
+metadata:
+  name: auth-secret
+  namespace: monitoring
+type: Opaque
+data:
+  auth: bHVvam06JGFwcjEkV2I2TTRXM2EkVzdDMmRMVS5NLnloeDdPTG4veVA0Lwo=

@@ -1,0 +1,37 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-prometheus
+  namespace: monitoring
+spec:
+  dnsNames:
+    - prometheus.env0.luojm.com
+  secretName: tls-prometheus
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-prometheus
+  routes:
+    - match: Host(`prometheus.env0.luojm.com`) 
+      kind: Rule
+      services:
+      - name: prometheus-k8s
+        kind: Service
+        namespace: monitoring
+        port: 9090
+      middlewares:
+        - name: auth
+  

@@ -1,0 +1,35 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-grafana
+  namespace: monitoring
+spec:
+  dnsNames:
+    - grafana.env0.luojm.com
+  secretName: tls-grafana
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-grafana
+  routes:
+    - match: Host(`grafana.env0.luojm.com`) 
+      kind: Rule
+      services:
+      - name: grafana
+        kind: Service
+        namespace: monitoring
+        port: 3000
+  
