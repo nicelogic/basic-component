@@ -8,4 +8,5 @@ helm --kubeconfig $kubeConfigFilePath repo add traefik https://helm.traefik.io/t
 helm --kubeconfig $kubeConfigFilePath repo update
 helm --kubeconfig $kubeConfigFilePath install traefik traefik/traefik --namespace=traefik --values=./traefik-chart-values.yaml --set nodeSelector.ingresscontroller=traefik 
 
+
 kubectl --kubeconfig $kubeConfigFilePath apply -k ./k8s 

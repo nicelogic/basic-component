@@ -1,19 +1,20 @@
 additionalArguments:
-  - --metrics.prometheus=false
+  # - --metrics.prometheus=false
+  # - --entrypoints.metrics.address=:9999/tcp
+  # - --metrics.prometheus.entrypoint=metrics
   # - --entrypoints.metrics.address=:9199/tcp
 
 deployment:
   enabled: true
-  # Can be either Deployment or DaemonSet
   kind: Deployment
-  # Number of pods of the deployment (only applies when kind == Deployment)
   replicas: 2
   dnsPolicy: Default
 hostNetwork: true
 ports:
+  metrics:
+    port: 9999
   web:
     port: 80
-    # redirectTo: websecure
   websecure:
     port: 443
 securityContext:
