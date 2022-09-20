@@ -11,6 +11,16 @@ kubectl config set-context --current --namespace k8ssandra-operator
 kubectl config set-context --current --namespace kube-logging
 
 
+### 强制删除namespace
+
+
+kubectl get ns traefik -o json > traefik.json
+vim traefik.json 
+kubectl proxy --port=8081 &
+curl -k -H "Content-Type: application/json" -X PUT --data-binary @traefik.json http://127.0.0.1:8081/api/v1/namespaces/traefik/finalize
+ps aux | grep 'kubectl proxy'
+pkill xxx
+
 
 ### 查看
 

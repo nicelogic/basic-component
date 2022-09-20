@@ -33,6 +33,11 @@ NAT映射回流问题。是为端口映射通用问题。
 . 安全
 . 基础组件路有规则只有443情况一条路,简单
 
+### 为什么ingress-route需要单独一个文件夹
+
+因为ingress-route包含let's encrypt的certificate issuer
+调整的时候，会经常去删除和请求证书，而这个是有数量限制的
+
 ### 什么时候用二级域名，什么时候用slash
 
 平台级组件用二级域名，因为他们的CONSOLE往往用slash还需要ridirect url跳过slash部分

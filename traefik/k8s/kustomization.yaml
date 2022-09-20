@@ -1,9 +1,3 @@
 
 resources:
-  - namespace.yaml
   - ingress-route-dash.yaml
-  - 00-role.yml
-  - 00-account.yml
-  - 01-role-binding.yml
-  - 02-traefik.yml
-  # - 02-traefik-services.yml

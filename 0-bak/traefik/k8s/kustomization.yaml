@@ -1,7 +1,5 @@
 
 resources:
-  - namespace.yaml
-  - ingress-route-dash.yaml
   - 00-role.yml
   - 00-account.yml
   - 01-role-binding.yml

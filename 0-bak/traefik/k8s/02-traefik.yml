@@ -18,14 +18,26 @@ spec:
         app: traefik
     spec:
       serviceAccountName: traefik-account
+      nodeSelector:
+        ingresscontroller: traefik
+      hostNetwork: true
       containers:
         - name: traefik
           image: traefik:v2.8
           args:
             - --api.insecure
+            - --accesslog
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
             - --providers.kubernetesingress
+            - --providers.kubernetescrd.namespaces
+            - --providers.kubernetescrd.allowcrossnamespace
+            - --providers.kubernetescrd.allowemptyservices
+            - --providers.kubernetescrd
           ports:
             - name: web
               containerPort: 80
+            - name: websecure
+              containerPort: 443
             - name: dashboard
               containerPort: 8080

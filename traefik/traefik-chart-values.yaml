@@ -1,5 +1,6 @@
 additionalArguments:
-  - --entrypoints.metrics.address=:9199/tcp
+  - --metrics.prometheus=false
+  # - --entrypoints.metrics.address=:9199/tcp
   # - --log.filepath=/opt/data/traefik/log/traefik.log
   # - --accesslog.filepath=/opt/data/traefik/log/access.log
   # - --log.level=DEBUG

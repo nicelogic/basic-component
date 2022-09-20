@@ -56,3 +56,20 @@ data:
   auth: bHVvam06JGFwcjEkV2I2TTRXM2EkVzdDMmRMVS5NLnloeDdPTG4veVA0Lwo=
 # htpasswd -bc auth luojm ccccc123
 # kubectl create secret generic auth-secret --from-file=auth
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: insecure-traefik-dash
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`192.168.1.201`)  
+      kind: Rule
+      services:
+        - kind: TraefikService
+          name: api@internal
