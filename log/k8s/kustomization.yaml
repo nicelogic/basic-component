@@ -1,8 +1,0 @@
-
-resources:
-  # - namespace.yaml
-  # - elasticsearch-svc.yaml
-  # - elasticsearch-sts.yaml
-  # - kibana.yaml
-  - ingress-route-kibana.yaml
-  # - fluentd.yaml
