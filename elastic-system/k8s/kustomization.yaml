@@ -1,0 +1,6 @@
+
+resources:
+  - elasticsearch-svc.yaml
+  - elasticsearch-sts.yaml
+  # - kibana.yaml
+  # - fluentd.yaml

@@ -21,6 +21,9 @@ grafana.env0.luojm.com
 prometheus.env0.luojm.com
 alertmanager.env0.luojm.com
 
+kibana.env0.luojm.com
+
+
 
 cloud-flare dns api token:
 
