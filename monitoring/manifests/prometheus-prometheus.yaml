@@ -10,6 +10,13 @@ metadata:
   name: k8s
   namespace: monitoring
 spec:
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: local-hostpath
+        resources:
+          requests:
+            storage: 30Gi
   alerting:
     alertmanagers:
     - apiVersion: v2
