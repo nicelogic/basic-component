@@ -43,6 +43,7 @@ cqlsh -u cassandra-cluster-env0-superuser -p znk4uVfaCLm6hppEZaJl cassandra-clus
 curl -L -X POST 'https://auth.cassandra.env0.luojm.com:9443/v1/auth' -H 'Content-Type: application/json' --data-raw '{"username": "cassandra-cluster-env0-superuser", "password": "znk4uVfaCLm6hppEZaJl"}'
 
 
+/Users/bryan.wu/test/cqlsh-5.1.20/bin/cqlsh -u cassandra-cluster-env0-superuser -p znk4uVfaCLm6hppEZaJl cql.cassandra.env0.luojm.com 9443
 
 ## basic
 
