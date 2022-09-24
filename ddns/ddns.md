@@ -15,7 +15,6 @@ console.tenant0.minio.env0.luojm.com
 
 auth.cassandra.env0.luojm.com
 graphql.cassandra.env0.luojm.com
-cql.cassandra.env0.luojm.com
 
 grafana.env0.luojm.com
 prometheus.env0.luojm.com
