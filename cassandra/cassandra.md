@@ -38,6 +38,9 @@ kubectl exec -it cassandra-cluster-env0-dc1-default-sts-0 -n k8ssandra-operator 
 ping cassandra-cluster-env0-dc3-stargate-service
 cqlsh -u cassandra-cluster-env0-superuser -p znk4uVfaCLm6hppEZaJl cassandra-cluster-env0-dc1-stargate-service
 
+use system;
+select data_center from local;
+
 ## stargate
 
 curl -L -X POST 'https://auth.cassandra.env0.luojm.com:9443/v1/auth' -H 'Content-Type: application/json' --data-raw '{"username": "cassandra-cluster-env0-superuser", "password": "znk4uVfaCLm6hppEZaJl"}'
@@ -53,6 +56,17 @@ k8ssandra部署，一个node一个cassandra, stargate单独一个node.一般3个
 
 primary key = partition key + cluster key, 要求primary key要能够唯一确定一行记录。
 也就是说不能在一个table中出现完全相同的primary key
+
+### 关于cassandra的pagination
+
+每次去查询，返回的pageState的hash是最后值的hash
+如果此时插入了值。如果在其之后，可以查询到。如果在其之前，拿hash去查询查询不到。得再来一次重新开始
+
+实测: 如果pageState hash的最后值那个item被删除了。拿这个hash还是可以继续访问下一个的
+	 如果此时下一个被删了，就会顺延拿值
+
+所以，新增的，如果排序在之前可能拿不到
+删除的，如果排序在之前会已经拿到
 
 ## faq
 
