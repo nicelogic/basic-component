@@ -5,6 +5,7 @@
 
 kubectl config set-context $(kubectl config current-context) --namespace=mongodb
 
+kubectl create secret generic ops-manager-admin-secret  --from-literal=Username="luojm" --from-literal=Password="ccccc123"  --from-literal=FirstName="nice" --from-literal=LastName="logic" -n mongodb
 
 ## enterprise
 

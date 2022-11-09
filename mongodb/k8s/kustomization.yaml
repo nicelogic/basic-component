@@ -1,0 +1,6 @@
+
+resources:
+  - mongodbcommunity.mongodb.com_mongodbcommunity.yaml
+  - ./rbac
+  - ./manager
+  - mongodb.com_v1_mongodbcommunity_cr.yaml
