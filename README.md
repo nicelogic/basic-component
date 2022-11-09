@@ -4,6 +4,8 @@
 
 * env负责硬件，系统，k8s集群创建部分。其他基础组件basic-component负责,包括containerd, k8s的运维部分
 * env0.luojm.com指向对外服务虚Ip(可能是master虚ip,也可能是ingress虚Ip)
+* 数据库以mongodb(community, replica set)为主。cassandra排序限制太大，而client的显示刷新策略又基于排序，分页刷新。
+  cassandra暂时保留，后续全部mongodb替代. ALL IN MONGO
 
 ## 诡异现象
 
