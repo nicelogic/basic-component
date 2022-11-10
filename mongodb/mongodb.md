@@ -5,21 +5,6 @@
 
 kubectl config set-context $(kubectl config current-context) --namespace=mongodb
 
-kubectl create secret generic ops-manager-admin-secret  --from-literal=Username="luojm" --from-literal=Password="ccccc123"  --from-literal=FirstName="nice" --from-literal=LastName="logic" -n mongodb
-
-## enterprise
-
-### ops-manager
-
-kubectl delete ns mongodb-ops-manager
-
-
-kubectl create secret generic  ops-manager-admin-secret\
-  --from-literal=Username="logic" \
-  --from-literal=Password="ccccc123" \
-  --from-literal=FirstName="nice" \
-  --from-literal=LastName="logic" -n mongodb
-
 ## community
 
 
@@ -39,3 +24,10 @@ rs.status();
 db.createUser({user:"test",pwd:"ccccc123",roles:["clusterAdmin","readWriteAnyDatabase","dbAdminAnyDatabase","userAdminAnyDatabase"]})
 
 db.getFreeMonitoringStatus
+
+
+mongo "mongodb://<service-object-name>.<my-namespace>.svc.cluster.local:27017/?replicaSet=<replica-set-name>" --username <username> --password <password> --authenticationDatabase <authentication-database>
+
+mongodb://luojm:ccccc123@mongodb-0.mongodb-svc.mongodb.svc.cluster.local:27017,mongodb-1.mongodb-svc.mongodb.svc.cluster.local:27017,mongodb-2.mongodb-svc.mongodb.svc.cluster.local:27017/admin?replicaSet=mongodb&ssl=false
+
+mongodb+srv://luojm:ccccc123@mongodb-svc.mongodb.svc.cluster.local/admin?replicaSet=mongodb&ssl=false
