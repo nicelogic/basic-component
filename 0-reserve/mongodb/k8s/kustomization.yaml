@@ -4,3 +4,4 @@ resources:
   - ./rbac
   - ./manager
   - mongodb.com_v1_mongodbcommunity_cr.yaml
+  - ingress-route.yaml

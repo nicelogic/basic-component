@@ -1,0 +1,33 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-mongodb
+  namespace: mongodb
+spec:
+  dnsNames:
+    - mongodb.env0.luojm.com
+  secretName: tls-mongodb
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: ingressroutetcp-mongodb
+  namespace: mongodb
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-mongodb
+  routes:
+  # Match is the rule corresponding to an underlying router.
+  - match: HostSNI(`mongodb.env0.luojm.com`)
+    services:
+    - name: mongodb-svc
+      port: 27017
+

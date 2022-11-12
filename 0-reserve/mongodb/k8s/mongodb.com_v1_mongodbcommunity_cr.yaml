@@ -32,14 +32,34 @@ spec:
     authentication:
       modes: ["SCRAM"]
   users:
+    - name: test
+      db: test
+      passwordSecretRef: 
+        name: my-user-password
+      roles:
+        - name: root
+          db: test
+        - name: clusterAdmin
+          db: test
+        - name: userAdminAnyDatabase
+          db: test
+        - name: dbAdminAnyDatabase
+          db: test
+        - name: readWriteAnyDatabase
+          db: test
+        - name: dbOwner
+          db: test
+      scramCredentialsSecretName: my-scram
     - name: luojm
       db: admin
-      passwordSecretRef: # a reference to the secret that will be used to generate the user's password
+      passwordSecretRef: 
         name: my-user-password
       roles:
         - name: clusterAdmin
           db: admin
         - name: userAdminAnyDatabase
+          db: admin
+        - name: root
           db: admin
       scramCredentialsSecretName: my-scram
   additionalMongodConfig:
