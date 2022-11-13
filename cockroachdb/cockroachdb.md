@@ -15,6 +15,7 @@ GRANT admin TO luojm;
 
 
 cockroach sql --url 'postgres://luojm:xxx@192.168.1.104:26257?sslmode=verify-ca&sslrootcert=certs/ca.crt'     
+cockroach sql --url 'postgres://luojm:xxx@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'   
 
 
 ## server less

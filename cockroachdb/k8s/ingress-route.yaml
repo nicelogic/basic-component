@@ -21,13 +21,15 @@ metadata:
   namespace: cockroach-operator-system
 spec:
   entryPoints:
-    - websecure
-  tls: 
-    secretName: tls-crdb
+    # - websecure
+    - web
+  # tls:
+  #   passthrough: true
+  #   secretName: tls-crdb
   routes:
-  # Match is the rule corresponding to an underlying router.
-  - match: HostSNI(`crdb.env0.luojm.com`)
+  # - match: HostSNI(`crdb.env0.luojm.com`)
+  - match: HostSNI(`*`)
     services:
-    - name: cockroachdb-public
+    - name: cockroach-lb-service
       port: 26257
 

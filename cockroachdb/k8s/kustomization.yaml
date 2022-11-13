@@ -4,4 +4,3 @@ resources:
   - service-loadbalance.yaml
   - ingress-route.yaml
   - ingress-route-console.yaml
-  - ui.yaml

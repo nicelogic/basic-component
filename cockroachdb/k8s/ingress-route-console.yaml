@@ -1,35 +1,33 @@
 
 
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: tls-crdb-console
-#   namespace: cockroach-operator-system
-# spec:
-#   dnsNames:
-#     - console.crdb.env0.luojm.com
-#   secretName: tls-crdb-console
-#   issuerRef:
-#     name: letsencrypt-production
-#     kind: ClusterIssuer
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-crdb-console
+  namespace: cockroach-operator-system
+spec:
+  dnsNames:
+    - console.crdb.env0.luojm.com
+  secretName: tls-crdb-console
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
 
 ---
 
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+kind: IngressRouteTCP
 metadata:
-  name: crdb-console 
+  name: crdb-console
   namespace: cockroach-operator-system
 spec:
-  entryPoints:
+  entryPoints:                  
     - websecure
-  tls: 
+  routes:                       
+  - match: HostSNI(`console.crdb.env0.luojm.com`)
+    services:                   
+    - name: cockroach-lb-service         
+      port: 8080                                  
+  tls:                          
+    passthrough: true 
     secretName: tls-crdb-console
-  routes:
-    - match: Host(`console.crdb.env0.luojm.com`) 
-      kind: Rule
-      services:
-      - name: cockroach-lb-service
-        kind: Service
-        namespace: cockroach-operator-system
-        port: 8080
