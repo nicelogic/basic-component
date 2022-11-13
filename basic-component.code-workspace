@@ -4,5 +4,23 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"sqltools.connections": [
+			{
+				"pgOptions": {
+					"ssl": {
+						"ca": "/Users/bryan.wu/Downloads/certs/ca.crt"
+					}
+				},
+				"previewLimit": 50,
+				"server": "192.168.1.104",
+				"port": 26257,
+				"driver": "CockroachDB",
+				"name": "env0-export-test",
+				"database": "defaultdb",
+				"username": "luojm",
+				"password": "ccccc123"
+			}
+		]
+	}
 }

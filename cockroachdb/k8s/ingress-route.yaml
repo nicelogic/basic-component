@@ -1,0 +1,33 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-crdb
+  namespace: cockroach-operator-system
+spec:
+  dnsNames:
+    - crdb.env0.luojm.com
+  secretName: tls-crdb
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: ingressroutetcp-crdb
+  namespace: cockroach-operator-system
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-crdb
+  routes:
+  # Match is the rule corresponding to an underlying router.
+  - match: HostSNI(`crdb.env0.luojm.com`)
+    services:
+    - name: cockroachdb-public
+      port: 26257
+
