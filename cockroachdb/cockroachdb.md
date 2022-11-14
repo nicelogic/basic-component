@@ -14,9 +14,11 @@ CREATE USER luojm WITH PASSWORD 'xxx';
 GRANT admin TO luojm;
 
 
-cockroach sql --url 'postgres://luojm:xxx@192.168.1.104:26257?sslmode=verify-ca&sslrootcert=certs/ca.crt'     
-cockroach sql --url 'postgres://luojm:xxx@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'   
+cockroach sql --url 'postgres://luojm@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'   
 
+ cockroach workload init startrek 'postgres://luojm@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'
+ cockroach workload init bank 'postgres://luojm:xxx@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'
+ cockroach workload run bank 'postgres://luojm:xxx@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt' --duration 60s
 
 ## server less
 

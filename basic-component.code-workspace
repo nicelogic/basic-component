@@ -13,13 +13,14 @@
 					}
 				},
 				"previewLimit": 50,
-				"server": "192.168.1.104",
-				"port": 26257,
+				"server": "crdb.env0.luojm.com",
+				"port": 9080,
 				"driver": "CockroachDB",
-				"name": "env0-export-test",
+				"name": "env0",
 				"database": "defaultdb",
 				"username": "luojm",
-				"password": "ccccc123"
+				"password": "ccccc123",
+				"connectString": "postgres://luojm:ccccc123@crdb.env0.luojm.com:9080?sslmode=verify-ca"
 			}
 		]
 	}

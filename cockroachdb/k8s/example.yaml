@@ -70,3 +70,11 @@ spec:
   # nodeSelectors used to match against
   # nodeSelector:
   #   worker-pool-name: crdb-workers
+
+
+  # ingress:
+  #   ui:
+  #     ingressClassName: traefik
+  #     # annotations:
+  #     #   key: value
+  #     host: test.luojm.com
