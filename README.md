@@ -4,17 +4,12 @@
 
 * env负责硬件，系统，k8s集群创建部分。其他基础组件basic-component负责,包括containerd, k8s的运维部分
 * env0.luojm.com指向对外服务虚Ip(可能是master虚ip,也可能是ingress虚Ip)
-* 数据库以mongodb(community, replica set)为主。cassandra排序限制太大，而client的显示刷新策略又基于排序，分页刷新。
-  cassandra暂时保留，后续全部mongodb替代. ALL IN MONGO --- 但是mongodb文档不好读。各种创造的概念.不够云原生。
-  shard模式要license.
-  ALL IN cockroachDB
-  因为: 
-  1. 云原生
-  2. scalable
-  3. transaction
-  4. 强一致性
+* 数据库: cockroachDB/postgresql
 
 ## 关于为什么选型mongodb(replica set) - deprecate
+数据库以mongodb(community, replica set)为主。cassandra排序限制太大，而client的显示刷新策略又基于排序，分页刷新。
+  cassandra暂时保留，后续全部mongodb替代. ALL IN MONGO --- 但是mongodb文档不好读。各种创造的概念.不够云原生。
+  shard模式要license.
 
 分布式数据库普遍对acid支持不好。有acid当然是最好的，可以保证两个表之间的状态在多客户端同时操作情况下是acid的
 acid一般会锁住资源，会慢。但是确是正确的。
