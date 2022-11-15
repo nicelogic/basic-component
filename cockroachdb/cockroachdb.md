@@ -19,6 +19,7 @@ cockroach sql --url 'postgres://luojm@crdb.env0.luojm.com:9080?sslmode=verify-ca
  cockroach workload init startrek 'postgres://luojm@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'
  cockroach workload init bank 'postgres://luojm:xxx@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'
  cockroach workload run bank 'postgres://luojm:xxx@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt' --duration 60s
+ cockroach workload init movr 'postgres://luojm@crdb.env0.luojm.com:9080?sslmode=verify-ca&sslrootcert=certs/ca.crt'
 
 ## server less
 
