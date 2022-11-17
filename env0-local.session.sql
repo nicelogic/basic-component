@@ -1,3 +1,10 @@
+-- INSERT INTO add_contacts_apply (user_id, contacts_id, message, update_time)
+-- VALUES (
+-- 	'5',
+-- 	'6',
+-- 	'message:text',
+-- 	'2022-11-05T11:38:45.000Z'
+--   );
 
-CREATE TABLE user_ride_counts AS SELECT u.name, COUNT(u.name) AS rides FROM "users" AS u JOIN "rides" AS r
-ON (u.id=r.rider_id) GROUP BY u.name;
+EXPLAIN analyze
+SELECT * from add_contacts_apply where contacts_id = '6'

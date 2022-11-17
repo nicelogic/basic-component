@@ -17,7 +17,7 @@
 				"port": 80,
 				"driver": "CockroachDB",
 				"name": "env0-local",
-				"database": "movr",
+				"database": "contacts",
 				"username": "luojm",
 				"password": "ccccc123"
 			}

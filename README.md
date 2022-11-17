@@ -4,9 +4,9 @@
 
 * env负责硬件，系统，k8s集群创建部分。其他基础组件basic-component负责,包括containerd, k8s的运维部分
 * env0.luojm.com指向对外服务虚Ip(可能是master虚ip,也可能是ingress虚Ip)
-* 数据库: cockroachDB/postgresql
+* 数据库: cockroachDB/postgresql(进可攻退可守)
 
-## 关于为什么选型mongodb(replica set) - deprecate
+## 为什么选型mongodb(replica set) - deprecate-不再使用mongodb
 数据库以mongodb(community, replica set)为主。cassandra排序限制太大，而client的显示刷新策略又基于排序，分页刷新。
   cassandra暂时保留，后续全部mongodb替代. ALL IN MONGO --- 但是mongodb文档不好读。各种创造的概念.不够云原生。
   shard模式要license.
@@ -33,6 +33,7 @@ shard模式，可以解决大数据的问题。但是enterprice license。要付
 又因为微服务的设计理念，对单个服务数据量的要求没那么高，所以选用mongodb replica set.
 实在数据量太多，则还可以用sharing模式。也是备选方案。
 
+这里目光狭隘了, newsql非常契合我的需要
 
 ## 诡异现象
 
