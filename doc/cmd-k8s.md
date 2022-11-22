@@ -11,6 +11,7 @@ kubectl config set-context --current --namespace k8ssandra-operator
 kubectl config set-context --current --namespace monitoring
 kubectl config set-context --current --namespace elastic-system
 kubectl config set-context --current --namespace cockroach-operator-system
+kubectl config set-context --current --namespace pulsar
 
 
 ### 强制删除namespace

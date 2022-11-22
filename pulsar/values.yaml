@@ -1,0 +1,125 @@
+
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+
+## deployed withh emptyDir
+# volumes:
+#   persistence: true
+
+# disabled AntiAffinity
+affinity:
+  anti_affinity: false
+
+# disable auto recovery
+components:
+  autorecovery: false
+  pulsar_manager: true
+
+zookeeper:
+  replicaCount: 1
+  volumes:
+    persistence: true
+    data:
+      name: data
+      size: 5Gi
+      local_storage: false
+      storageClassName: local-hostpath
+
+bookkeeper:
+  replicaCount: 1
+  volumes:
+    persistence: true
+    journal:
+      name: journal
+      size: 5Gi
+      local_storage: false
+      storageClassName: local-hostpath
+    ledgers:
+      name: ledgers
+      size: 5Gi
+      local_storage: false
+      storageClassName: local-hostpath
+
+broker:
+  replicaCount: 1
+  configData:
+    ## Enable `autoSkipNonRecoverableData` since bookkeeper is running
+    ## without persistence
+    autoSkipNonRecoverableData: "true"
+    # storage settings
+    managedLedgerDefaultEnsembleSize: "1"
+    managedLedgerDefaultWriteQuorum: "1"
+    managedLedgerDefaultAckQuorum: "1"
+
+proxy:
+  replicaCount: 1
+  ports:
+    http: 8080
+
+kube-prometheus-stack:
+  enabled: false
+  prometheusOperator:
+    enabled: false
+  grafana:
+    enabled: false
+  alertmanager:
+    enabled: false
+  prometheus:
+    enabled: false
+
+tls:
+  enabled: false
+
+images:
+  # zookeeper:
+  #   repository: apachepulsar/pulsar-all
+  #   tag: 2.10.2
+  #   pullPolicy: IfNotPresent
+  # bookie:
+  #   repository: apachepulsar/pulsar-all
+  #   tag: 2.10.2
+  #   pullPolicy: IfNotPresent
+  # autorecovery:
+  #   repository: apachepulsar/pulsar-all
+  #   tag: 2.10.2
+  #   pullPolicy: IfNotPresent
+  # broker:
+  #   repository: apachepulsar/pulsar-all
+  #   tag: 2.10.2
+  #   pullPolicy: IfNotPresent
+  # proxy:
+  #   repository: apachepulsar/pulsar-all
+  #   tag: 2.10.2
+  #   pullPolicy: IfNotPresent
+  # functions:
+  #   repository: apachepulsar/pulsar-all
+  #   tag: 2.10.2
+  # prometheus:
+  #   repository: prom/prometheus
+  #   tag: v2.17.2
+  #   pullPolicy: IfNotPresent
+  # grafana:
+  #   repository: streamnative/apache-pulsar-grafana-dashboard-k8s
+  #   tag: 0.0.16
+  #   pullPolicy: IfNotPresent
+  pulsar_manager:
+    repository: apachepulsar/pulsar-manager
+    tag: v0.2.0
+    pullPolicy: IfNotPresent
+    hasCommand: false

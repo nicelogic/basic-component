@@ -1,0 +1,35 @@
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-manager
+  namespace: pulsar
+spec:
+  dnsNames:
+    - console.pulsar.env0.luojm.com
+  secretName: tls-manager
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: manager 
+  namespace: pulsar
+spec:
+  entryPoints:
+    - websecure
+  tls: 
+    secretName: tls-manager
+  routes:
+    - match: Host(`console.pulsar.env0.luojm.com`) 
+      kind: Rule
+      services:
+      - name: pulsar-pulsar-manager
+        kind: Service
+        namespace: pulsar
+        port: 9527
+  
