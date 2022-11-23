@@ -35,38 +35,18 @@ spec:
 
 ---
 
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: tls-proxy-broker
-#   namespace: pulsar
-# spec:
-#   dnsNames:
-#     - broker.pulsar.env0.luojm.com
-#   secretName: tls-proxy-broker
-#   issuerRef:
-#     name: letsencrypt-production
-#     kind: ClusterIssuer
-
-
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: proxy-broker
-#   namespace: pulsar
-# spec:
-#   entryPoints:
-#     - web
-#   # tls: 
-#   #   secretName: tls-proxy-broker
-#   routes:
-#     - match: Host(`broker.pulsar.env0.luojm.com`) 
-#       kind: Rule
-#       services:
-#       - name: pulsar-proxy
-#         kind: Service
-#         namespace: pulsar
-#         port: 6650
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-proxy-broker
+  namespace: pulsar
+spec:
+  dnsNames:
+    - broker.pulsar.env0.luojm.com
+  secretName: tls-proxy-broker
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
   
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
@@ -75,9 +55,11 @@ metadata:
   namespace: pulsar
 spec:
   entryPoints:
-    - web
+    - websecure
+  tls: 
+    secretName: tls-proxy-broker
   routes:
-  - match: HostSNI(`*`)
+  - match: HostSNI(`broker.pulsar.env0.luojm.com`)
     services:
     - name: pulsar-proxy
       port: 6650
