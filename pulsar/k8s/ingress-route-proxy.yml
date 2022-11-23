@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: tls-proxy
+  name: tls-proxy-web
   namespace: pulsar
 spec:
   dnsNames:
-    - pulsar.env0.luojm.com
-  secretName: tls-proxy
+    - web.pulsar.env0.luojm.com
+  secretName: tls-proxy-web
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
@@ -17,15 +17,15 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: proxy
+  name: proxy-web
   namespace: pulsar
 spec:
   entryPoints:
     - websecure
   tls: 
-    secretName: tls-proxy
+    secretName: tls-proxy-web
   routes:
-    - match: Host(`pulsar.env0.luojm.com`) 
+    - match: Host(`web.pulsar.env0.luojm.com`) 
       kind: Rule
       services:
       - name: pulsar-proxy
