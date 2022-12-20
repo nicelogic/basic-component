@@ -9,20 +9,20 @@ kubectl get pod kube-controller-manager-node3-control-plane -n kube-system -o ya
 
 ### mc
 
- mc alias set env0 https://tenant0.minio.env0.luojm.com:9443 V8xoBJAn8IYpOerT egVTkHkcCGzCaP3MwkaPBU4SQA88T3qe
+ mc alias set env0 https://tenant0.minio.env0.luojm.com:9443 access-key access-key-secret
  mc ls env0/bucket-0
  mc share download env0/bucket-0/379_1661761509.mp4
 
- mc alias set env0-r https://tenant0.minio.env0.luojm.com:9443 readonly ccccc123
+ mc alias set env0-r https://tenant0.minio.env0.luojm.com:9443 readonly pwd
  mc share download env0-r/bucket-0/379_1661761509.mp4
 
 
-mc alias set env0-zhihua https://tenant0.minio.env0.luojm.com:9443 zhihua ccccc123
 mc rm --recursive --force env0-zhihua/fuan-up/zhihua/test
 mc cp env0-zhihua/fuan-up/zhihua/VID_20211016_181807.mp4 ./1.mp4
 mc cp ./1.mp4 env0-zhihua/fuan-up/zhihua/1.mp4
 
-
+mc alias set env0 https://tenant0.minio.env0.luojm.com:9443 xxx xxxx
+mc anonymous set download env0/app-0/users
 
 ## minio原理
 
